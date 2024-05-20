@@ -41,7 +41,15 @@ export default function TabLayout() {
           tabBarTestID: 'feed-tab',
         }}
       />
-
+      <Tabs.Screen
+        name="partners"
+        options={{
+          title: 'Feed',
+          tabBarIcon: ({ color }) => <FeedIcon color={color} />,
+          headerRight: () => <CreateNewPostLink />,
+          tabBarTestID: 'feed-tab',
+        }}
+      />
       <Tabs.Screen
         name="style"
         options={{

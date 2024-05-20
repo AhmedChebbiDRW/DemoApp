@@ -36,8 +36,8 @@ require('dotenv').config({
 const BUNDLE_ID = 'com.demoapp'; // ios bundle id
 const PACKAGE = 'com.demoapp'; // android package name
 const NAME = 'DemoApp'; // app name
-const EXPO_ACCOUNT_OWNER = 'expo-owner'; // expo account owner
-const EAS_PROJECT_ID = 'c3e1075b-6fe7-4686-aa49-35b46a229044'; // eas project id
+const EXPO_ACCOUNT_OWNER = 'ahmeddrw'; // expo account owner
+const EAS_PROJECT_ID = '6f762868-de60-48d6-87c5-52d234b1d612'; // eas project id
 const SCHEME = 'DemoApp'; // app scheme
 
 /**
@@ -79,6 +79,7 @@ const client = z.object({
 
   // ADD YOUR CLIENT ENV VARS HERE
   API_URL: z.string(),
+  API_URL_TB: z.string(),
   VAR_NUMBER: z.number(),
   VAR_BOOL: z.boolean(),
 });
@@ -103,6 +104,7 @@ const _clientEnv = {
 
   // ADD YOUR ENV VARS HERE TOO
   API_URL: process.env.API_URL,
+  API_URL_TB: process.env.API_URL_TB,
   VAR_NUMBER: Number(process.env.VAR_NUMBER),
   VAR_BOOL: process.env.VAR_BOOL === 'true',
 };
