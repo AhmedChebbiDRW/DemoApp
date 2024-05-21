@@ -28,17 +28,17 @@ require('dotenv').config({
  * Such as: bundle id, package name, app name.
  *
  * You can add them to the .env file but we think it's better to keep them here as as we use prefix to generate this values based on the APP_ENV
- * for example: if the APP_ENV is staging, the bundle id will be com.demoapp.staging
+ * for example: if the APP_ENV is staging, the bundle id will be com.skaners.staging
  */
 
 // TODO: Replace these values with your own
 
-const BUNDLE_ID = 'com.demoapp'; // ios bundle id
-const PACKAGE = 'com.demoapp'; // android package name
-const NAME = 'DemoApp'; // app name
+const BUNDLE_ID = 'com.skaners'; // ios bundle id
+const PACKAGE = 'com.skaners'; // android package name
+const NAME = 'Skaners'; // app name
 const EXPO_ACCOUNT_OWNER = 'ahmeddrw'; // expo account owner
 const EAS_PROJECT_ID = '6f762868-de60-48d6-87c5-52d234b1d612'; // eas project id
-const SCHEME = 'DemoApp'; // app scheme
+const SCHEME = 'Skaners'; // app scheme
 
 /**
  * We declare a function withEnvSuffix that will add a suffix to the variable name based on the APP_ENV

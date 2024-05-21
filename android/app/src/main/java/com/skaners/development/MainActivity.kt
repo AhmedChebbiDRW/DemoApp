@@ -1,4 +1,4 @@
-package com.demoapp.development
+package com.skaners.development
 
 import android.os.Build
 import android.os.Bundle

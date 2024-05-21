@@ -1,48 +1,82 @@
+/* eslint-disable max-lines-per-function */
+import { FontAwesome6 } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React from 'react';
+import { ImageBackground } from 'react-native';
 
-import { Cover } from '@/components/cover';
-import { useIsFirstTime } from '@/core/hooks';
-import { Button, FocusAwareStatusBar, SafeAreaView, Text, View } from '@/ui';
+import { useIsFirstTime } from '@/core';
+import { Button, FocusAwareStatusBar, Image, Text, View } from '@/ui';
+import images from '@/ui/images/images';
 export default function Onboarding() {
   const [_, setIsFirstTime] = useIsFirstTime();
   const router = useRouter();
   return (
-    <View className="flex h-full items-center  justify-center">
+    <View className="h-full w-full flex-1 items-center justify-center">
       <FocusAwareStatusBar />
-      <View className="w-full flex-1">
-        <Cover />
-      </View>
-      <View className="justify-end ">
-        <Text className="my-3 text-center text-5xl font-bold">
-          Obytes Starter
-        </Text>
-        <Text className="mb-2 text-center text-lg text-gray-600">
-          The right way to build your mobile app
-        </Text>
-
-        <Text className="my-1 pt-6 text-left text-lg">
-          🚀 Production-ready{' '}
-        </Text>
-        <Text className="my-1 text-left text-lg">
-          🥷 Developer experience + Productivity
-        </Text>
-        <Text className="my-1 text-left text-lg">
-          🧩 Minimal code and dependencies
-        </Text>
-        <Text className="my-1 text-left text-lg">
-          💪 well maintained third-party libraries
-        </Text>
-      </View>
-      <SafeAreaView className="mt-6">
-        <Button
-          label="Let's Get Started "
-          onPress={() => {
-            setIsFirstTime(false);
-            router.replace('/login');
-          }}
-        />
-      </SafeAreaView>
+      <ImageBackground
+        source={images.backgroundImage}
+        resizeMode="cover"
+        className="h-full w-full"
+      >
+        <View className=" ml-2 mt-14 w-5/6 flex-1 items-center justify-center px-6">
+          <Text className="items-center justify-center font-nhdmedium text-4xl font-semibold uppercase text-white">
+            Scanne ta paire TROUVE LA {'\n'}MOINS CH&eacute;re
+          </Text>
+        </View>
+        <View className="relative w-full items-center justify-end gap-2 rounded-full p-4">
+          <View className="flex-row items-center justify-center gap-4 ">
+            <Button
+              onPress={() => console.log('Google')}
+              className="h-11 w-14 items-center justify-center rounded-full bg-white"
+            >
+              <Image
+                source={images.googleIcon}
+                contentFit="contain"
+                className="h-6 w-6"
+              />
+            </Button>
+            <Button
+              onPress={() => console.log('Facebook')}
+              className="h-11 w-14 items-center justify-center rounded-full bg-white"
+            >
+              <Ionicons name="logo-facebook" size={24} color="#1877F2" />
+            </Button>
+            <Button
+              onPress={() => console.log('Apple')}
+              className="h-11 w-14 items-center justify-center rounded-full bg-white"
+            >
+              <Ionicons name="logo-apple" size={24} color="black" />
+            </Button>
+          </View>
+          <Text className="font-nhdbold text-xl text-white">ou</Text>
+          <View className="w-full items-center justify-center">
+            <Button
+              className="h-14 w-full items-center justify-center rounded-full bg-white text-lg"
+              label="Continue par email"
+              textClassName=""
+              onPress={() => {
+                setIsFirstTime(false);
+                router.push('/login');
+              }}
+            >
+              <View className="flex-1 flex-row items-center justify-center">
+                <Text className="ml-auto font-nhdroman text-xl font-medium">
+                  Continue par email
+                </Text>
+                <View className="ml-auto items-center justify-center rounded-full bg-black ">
+                  <FontAwesome6
+                    name="arrow-right-long"
+                    size={18}
+                    color="white"
+                    className="py-3 pl-12 pr-2"
+                  />
+                </View>
+              </View>
+            </Button>
+          </View>
+        </View>
+      </ImageBackground>
     </View>
   );
 }
