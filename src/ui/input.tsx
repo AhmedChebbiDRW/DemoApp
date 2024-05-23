@@ -17,7 +17,7 @@ import { Text } from './text';
 const inputTv = tv({
   slots: {
     container: 'mb-2',
-    label: 'text-grey-100 mb-1 text-lg dark:text-neutral-100',
+    label: 'text-grey-100 mb-1 text-lg dark:text-neutral-100 font-pmedium',
     input:
       'mt-0 rounded-xl border-[0.5px] border-neutral-300 bg-neutral-100 px-4 py-3 font-inter text-base  font-medium leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white',
   },
@@ -30,8 +30,8 @@ const inputTv = tv({
     },
     error: {
       true: {
-        input: 'border-danger-600',
-        label: 'text-danger-600 dark:text-danger-600',
+        input: 'border-[#FD4104]',
+        label: 'text-[#E79F80] dark:text-[#E79F80]',
       },
     },
     disabled: {
@@ -111,7 +111,7 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
       {error && (
         <Text
           testID={testID ? `${testID}-error` : undefined}
-          className="text-sm text-danger-400 dark:text-danger-600"
+          className="text-sm text-[#DFBBAC] dark:text-[#DFBBAC]"
         >
           {error}
         </Text>

@@ -3,7 +3,7 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { ImageBackground } from 'react-native';
+import { Alert, ImageBackground } from 'react-native';
 
 import { useIsFirstTime } from '@/core';
 import { Button, FocusAwareStatusBar, Image, Text, View } from '@/ui';
@@ -27,7 +27,25 @@ export default function Onboarding() {
         <View className="relative w-full items-center justify-end gap-2 rounded-full p-4">
           <View className="flex-row items-center justify-center gap-4 ">
             <Button
-              onPress={() => console.log('Google')}
+              onPress={() =>
+                Alert.alert(
+                  'Alert title',
+                  'Here’s some alert text. It can span multiple lines if needed!',
+                  [
+                    {
+                      text: 'Action',
+                      onPress: () => console.log('Action 1 Pressed'),
+                      style: 'cancel',
+                    },
+                    {
+                      text: 'Action',
+                      onPress: () => console.log('Action 2 Pressed'),
+                      style: 'cancel',
+                    },
+                  ],
+                  { cancelable: true }
+                )
+              }
               className="h-11 w-14 items-center justify-center rounded-full bg-white"
             >
               <Image
@@ -37,13 +55,49 @@ export default function Onboarding() {
               />
             </Button>
             <Button
-              onPress={() => console.log('Facebook')}
+              onPress={() =>
+                Alert.alert(
+                  'Alert title',
+                  'Here’s some alert text. It can span multiple lines if needed!',
+                  [
+                    {
+                      text: 'Action',
+                      onPress: () => console.log('Action 1 Pressed'),
+                      style: 'cancel',
+                    },
+                    {
+                      text: 'Action',
+                      onPress: () => console.log('Action 2 Pressed'),
+                      style: 'cancel',
+                    },
+                  ],
+                  { cancelable: true }
+                )
+              }
               className="h-11 w-14 items-center justify-center rounded-full bg-white"
             >
               <Ionicons name="logo-facebook" size={24} color="#1877F2" />
             </Button>
             <Button
-              onPress={() => console.log('Apple')}
+              onPress={() =>
+                Alert.alert(
+                  'Alert title',
+                  'Here’s some alert text. It can span multiple lines if needed!',
+                  [
+                    {
+                      text: 'Action',
+                      onPress: () => console.log('Action 1 Pressed'),
+                      style: 'cancel',
+                    },
+                    {
+                      text: 'Action',
+                      onPress: () => console.log('Action 2 Pressed'),
+                      style: 'cancel',
+                    },
+                  ],
+                  { cancelable: true }
+                )
+              }
               className="h-11 w-14 items-center justify-center rounded-full bg-white"
             >
               <Ionicons name="logo-apple" size={24} color="black" />
@@ -57,7 +111,7 @@ export default function Onboarding() {
               textClassName=""
               onPress={() => {
                 setIsFirstTime(false);
-                router.push('/login');
+                router.push('/email');
               }}
             >
               <View className="flex-1 flex-row items-center justify-center">

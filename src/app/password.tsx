@@ -1,26 +1,28 @@
 import { useRouter } from 'expo-router';
-import React from 'react';
+import React, { useState } from 'react';
 
-import type { LoginFormProps } from '@/components/login-form';
-import { LoginForm } from '@/components/login-form';
+import type { PasswordFormProps } from '@/components/password-form';
+import { PasswordForm } from '@/components/password-form';
 import { useAuth } from '@/core';
 import { useSoftKeyboardEffect } from '@/core/keyboard';
 import { FocusAwareStatusBar } from '@/ui';
 
 export default function Login() {
+  const [isNewUser, setIsNewUser] = useState(true);
   const router = useRouter();
   const signIn = useAuth.use.signIn();
   useSoftKeyboardEffect();
 
-  const onSubmit: LoginFormProps['onSubmit'] = (data) => {
+  const onSubmit: PasswordFormProps['onSubmit'] = (data) => {
     console.log(data);
+    setIsNewUser(false);
     signIn({ access: 'access-token', refresh: 'refresh-token' });
     router.push('/');
   };
   return (
     <>
       <FocusAwareStatusBar />
-      <LoginForm onSubmit={onSubmit} />
+      <PasswordForm onSubmit={onSubmit} isNewUser={isNewUser} />
     </>
   );
 }

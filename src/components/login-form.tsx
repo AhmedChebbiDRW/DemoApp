@@ -7,17 +7,11 @@ import * as z from 'zod';
 import { Button, ControlledInput, Text, View } from '@/ui';
 
 const schema = z.object({
-  name: z.string().optional(),
   email: z
     .string({
       required_error: 'Email is required',
     })
     .email('Invalid email format'),
-  password: z
-    .string({
-      required_error: 'Password is required',
-    })
-    .min(6, 'Password must be at least 6 characters'),
 });
 
 export type FormType = z.infer<typeof schema>;
@@ -27,40 +21,32 @@ export type LoginFormProps = {
 };
 
 export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
-  const { handleSubmit, control } = useForm<FormType>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
   return (
-    <View className="flex-1 justify-center p-4">
+    <View className="mt-20 flex-1 justify-start p-4">
       <Text testID="form-title" className="pb-6 text-center text-2xl ">
-        Sign In
+        Votre adresse mail
       </Text>
-
-      <ControlledInput
-        testID="name"
-        control={control}
-        name="name"
-        label="Name"
-      />
 
       <ControlledInput
         testID="email-input"
         control={control}
         name="email"
-        label="Email"
+        // label="Email"
       />
-      <ControlledInput
-        testID="password-input"
-        control={control}
-        name="password"
-        label="Password"
-        placeholder="***"
-        secureTextEntry={true}
-      />
+
       <Button
         testID="login-button"
-        label="Login"
+        label="Continuer"
         onPress={handleSubmit(onSubmit)}
+        textClassName={`${errors.email ? 'text-[#E79F80]' : ''}`}
+        className={`${errors.email ? 'bg-[#FFD3C5]' : ''}`}
       />
     </View>
   );
