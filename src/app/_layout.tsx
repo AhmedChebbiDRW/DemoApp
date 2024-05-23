@@ -17,8 +17,7 @@ export { ErrorBoundary } from 'expo-router';
 import '../../global.css';
 
 export const unstable_settings = {
-  initialRouteName: 'sign-up',
-  // initialRouteName: '(app)',
+  initialRouteName: '(app)',
 };
 
 hydrateAuth();
@@ -36,10 +35,10 @@ function RootLayoutNav() {
   return (
     <Providers>
       <Stack>
-        {/* <Stack.Screen name="(app)" options={{ headerShown: false }} /> */}
-        {/* <Stack.Screen name="onboarding" options={{ headerShown: false }} /> */}
-        {/* <Stack.Screen name="email" options={{ headerShown: false }} /> */}
-        {/* <Stack.Screen name="password" options={{ headerShown: false }} /> */}
+        <Stack.Screen name="(app)" options={{ headerShown: false }} />
+        <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+        <Stack.Screen name="email" options={{ headerShown: false }} />
+        <Stack.Screen name="password" options={{ headerShown: false }} />
         <Stack.Screen name="sign-up" options={{ headerShown: false }} />
       </Stack>
     </Providers>

@@ -1,8 +1,8 @@
+/** @type {import('tailwindcss').Config} */
+
 const colors = require('./src/ui/colors');
 
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  // NOTE: Update this to include the paths to all of your component files.
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'class',
   presets: [require('nativewind/preset')],
@@ -35,7 +35,16 @@ module.exports = {
         nhdxxthin: ['NeueHaasDisplayXXThin', 'sans-serif'],
         nhdxxthini: ['NeueHaasDisplayXXThinItalic', 'sans-serif'],
       },
-      colors,
+      backgroundImage: {
+        'radial-gradient':
+          'radial-gradient(ellipse at right, var(--tw-gradient-stops))',
+      },
+      colors: {
+        ...colors,
+        'yellow-500': '#f59e0b',
+        'orange-600': '#ea580c',
+        'red-700': '#b91c1c',
+      },
     },
   },
   plugins: [],
