@@ -115,7 +115,7 @@ export default function Onboarding() {
               }}
             >
               <View className="flex-1 flex-row items-center justify-center">
-                <Text className="ml-auto font-nhdroman text-xl font-medium">
+                <Text className="text-secondary ml-auto font-nhdmedium text-xl text-charcoal-700 dark:text-charcoal-700">
                   Continue par email
                 </Text>
                 <View className="ml-auto items-center justify-center rounded-full bg-black ">

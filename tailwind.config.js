@@ -35,16 +35,7 @@ module.exports = {
         nhdxxthin: ['NeueHaasDisplayXXThin', 'sans-serif'],
         nhdxxthini: ['NeueHaasDisplayXXThinItalic', 'sans-serif'],
       },
-      backgroundImage: {
-        'radial-gradient':
-          'radial-gradient(ellipse at right, var(--tw-gradient-stops))',
-      },
-      colors: {
-        ...colors,
-        'yellow-500': '#f59e0b',
-        'orange-600': '#ea580c',
-        'red-700': '#b91c1c',
-      },
+      colors,
     },
   },
   plugins: [],

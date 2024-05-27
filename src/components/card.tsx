@@ -1,10 +1,13 @@
 import { Link } from 'expo-router';
 import React from 'react';
 
-import type { Post } from '@/api';
 import { Image, Pressable, Text, View } from '@/ui';
 
-type Props = Post;
+type Props = {
+  title: string;
+  body: string;
+  id: string;
+};
 
 const images = [
   'https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80',

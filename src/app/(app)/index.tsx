@@ -1,6 +1,14 @@
+/* eslint-disable max-lines-per-function */
 import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
 import * as React from 'react';
-import { Dimensions, FlatList, StyleSheet, View } from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  Pressable,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 import { products } from '@/api/products';
 import type { Product } from '@/components/product-card';
@@ -13,6 +21,7 @@ const { width } = Dimensions.get('window');
 
 export default function Home() {
   const { ref, present } = useAlwaysOpenModal();
+  const router = useRouter();
 
   const renderItem = React.useCallback(({ item }: { item: Product }) => {
     return (
@@ -24,7 +33,7 @@ export default function Home() {
 
   React.useEffect(() => {
     present();
-  }, [present]);
+  }, [present, ref]);
 
   return (
     <View className="flex-1">
@@ -46,17 +55,21 @@ export default function Home() {
             <Text className="mt-4 font-psemibold text-lg text-white">
               Scan pour identifier ta sneaker
             </Text>
+            <Pressable onPress={() => router.push('/camera')}>
+              <Image
+                source={images.logo}
+                style={styles.logo}
+                contentFit="cover"
+              />
+            </Pressable>
+          </View>
+          <Pressable onPress={() => router.push('/camera')}>
             <Image
-              source={images.logo}
-              style={styles.logo}
+              source={images.camera}
+              style={styles.camera}
               contentFit="cover"
             />
-          </View>
-          <Image
-            source={images.camera}
-            style={styles.camera}
-            contentFit="cover"
-          />
+          </Pressable>
         </View>
         <View className="w-full flex-1">
           <AlwaysOpenModal

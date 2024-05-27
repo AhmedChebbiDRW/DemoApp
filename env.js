@@ -36,8 +36,8 @@ require('dotenv').config({
 const BUNDLE_ID = 'com.skaners'; // ios bundle id
 const PACKAGE = 'com.skaners'; // android package name
 const NAME = 'Skaners'; // app name
-const EXPO_ACCOUNT_OWNER = 'ahmeddrw'; // expo account owner
-const EAS_PROJECT_ID = '6f762868-de60-48d6-87c5-52d234b1d612'; // eas project id
+const EXPO_ACCOUNT_OWNER = 'nizardrw'; // expo account owner
+const EAS_PROJECT_ID = 'a7182ceb-c073-4170-bf73-fb7355bf19bf'; // eas project id
 const SCHEME = 'Skaners'; // app scheme
 
 /**
