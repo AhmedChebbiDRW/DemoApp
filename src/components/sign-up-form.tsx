@@ -35,7 +35,7 @@ const schema = z.object({
   select: z.number({ required_error: 'Must select a choice' }),
 });
 
-const tailles: Option[] = [
+export const tailles: Option[] = [
   { value: 41, label: '41' },
   { value: 42, label: '42' },
   { value: 42.5, label: '42.5' },

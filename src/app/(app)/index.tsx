@@ -48,6 +48,7 @@ export default function Home() {
           '#FD521B',
           '#FF953D',
         ]}
+        shouldRasterizeIOS
         style={styles.background}
       >
         <View className="h-full w-full items-center justify-center gap-4">

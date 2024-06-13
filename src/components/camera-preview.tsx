@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
   ActivityIndicator,
@@ -18,10 +19,35 @@ interface CameraPreviewProps {
   savePhoto?: () => void;
 }
 
+const results = [
+  {
+    href: 'footlocker.fr',
+    price: 169,
+  },
+  {
+    href: 'footlocker.fr',
+    price: 159,
+  },
+  {
+    href: 'footlocker.fr',
+    price: 149,
+  },
+  {
+    href: 'footlocker.fr',
+    price: 139,
+  },
+  {
+    href: 'footlocker.fr',
+    price: 129,
+  },
+];
+
 const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
   const { width } = useWindowDimensions();
   const height = Math.round((width * 16) / 9);
   const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   const sendImage = () => {
     /*
@@ -31,6 +57,16 @@ const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
+    router.push<any>({
+      pathname: '/search',
+      params: {
+        title: 'YEEZY BOOST 350 V2',
+        brand: 'ADIDAS',
+        photo: photo && photo.uri,
+        total: 1256,
+        results: JSON.stringify(results),
+      },
+    });
     /*
      * SEND IMAGE TO SERVER
      */

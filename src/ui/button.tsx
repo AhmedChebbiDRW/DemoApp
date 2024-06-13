@@ -23,6 +23,11 @@ const button = tv({
         label: 'text-secondary-600',
         indicator: 'text-white',
       },
+      gradient: {
+        container: 'bg-gradient-to-r from-orange-500 to-orange-300',
+        label: 'text-gradient-500',
+        indicator: 'text-white',
+      },
       outline: {
         container: 'border border-neutral-400',
         label: 'text-black dark:text-neutral-100',
