@@ -1,7 +1,10 @@
 import type { BottomSheetModalProps } from '@gorhom/bottom-sheet';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
+
+import { useModalStore } from '@/core/modal/modal-store';
+import { useAlwaysOpenModal } from '@/core/modal/use-always-open-modal';
 
 import { Text } from './text';
 
@@ -11,22 +14,6 @@ type ModalProps = BottomSheetModalProps & {
 };
 
 type ModalRef = React.ForwardedRef<BottomSheetModal>;
-
-type ModalHeaderProps = {
-  title?: string;
-  skaners?: number;
-};
-
-export const useAlwaysOpenModal = () => {
-  const ref = React.useRef<BottomSheetModal>(null);
-  const present = React.useCallback((data?: any) => {
-    ref.current?.present(data);
-  }, []);
-  const dismiss = React.useCallback(() => {
-    // Prevent dismiss
-  }, []);
-  return { ref, present, dismiss };
-};
 
 export const AlwaysOpenModal = React.forwardRef(
   (
@@ -45,6 +32,7 @@ export const AlwaysOpenModal = React.forwardRef(
     );
     const modal = useAlwaysOpenModal();
     const snapPoints = React.useMemo(() => _snapPoints, [_snapPoints]);
+    const isVisible = useModalStore((state) => state.isVisible);
 
     React.useImperativeHandle(
       ref,
@@ -61,12 +49,18 @@ export const AlwaysOpenModal = React.forwardRef(
       [title, skaners]
     );
 
+    useEffect(() => {
+      if (!isVisible && modal.ref.current) {
+        modal.ref.current.dismiss();
+      }
+    }, [isVisible, modal.ref]);
+
     return (
       <BottomSheetModal
         {...props}
         {...detachedProps}
         ref={modal.ref}
-        index={1} // Start at the expanded state
+        index={isVisible ? 1 : -1} // Control visibility with Zustand state
         snapPoints={snapPoints}
         handleComponent={renderHandleComponent}
         enableDismissOnClose={false} // Prevent dismiss on close
@@ -75,15 +69,6 @@ export const AlwaysOpenModal = React.forwardRef(
     );
   }
 );
-
-/**
- *
- * @param detached
- * @returns
- *
- * @description
- * In case the modal is detached, we need to add some extra props to the modal to make it look like a detached modal.
- */
 
 const getDetachedProps = (detached: boolean) => {
   if (detached) {
@@ -96,25 +81,23 @@ const getDetachedProps = (detached: boolean) => {
   return {} as Partial<BottomSheetModalProps>;
 };
 
-/**
- * ModalHeader
- */
-
-const ModalHeader = React.memo(({ title, skaners }: ModalHeaderProps) => {
-  return (
-    <>
-      {title && (
-        <View className="flex-row px-2 py-4">
-          <View className="flex-1 flex-row items-center justify-between">
-            <Text className="text-center font-nhdmedium text-[20px] text-[#26313D] dark:text-white">
-              {title}
-            </Text>
-            <Text className="text-center font-mono text-[16px] text-[#26313D] dark:text-white">
-              {skaners} skaners
-            </Text>
+const ModalHeader = React.memo(
+  ({ title, skaners }: { title?: string; skaners?: number }) => {
+    return (
+      <>
+        {title && (
+          <View className="flex-row px-2 py-4">
+            <View className="flex-1 flex-row items-center justify-between">
+              <Text className="text-center font-nhdmedium text-[20px] text-[#26313D] dark:text-white">
+                {title}
+              </Text>
+              <Text className="text-center font-mono text-[16px] text-[#26313D] dark:text-white">
+                {skaners} skaners
+              </Text>
+            </View>
           </View>
-        </View>
-      )}
-    </>
-  );
-});
+        )}
+      </>
+    );
+  }
+);

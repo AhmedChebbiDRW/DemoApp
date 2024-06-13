@@ -1,4 +1,5 @@
 /* eslint-disable max-lines-per-function */
+import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import * as React from 'react';
@@ -13,14 +14,18 @@ import {
 import { products } from '@/api/products';
 import type { Product } from '@/components/product-card';
 import ProductCard from '@/components/product-card';
+import { useModalStore } from '@/core/modal/modal-store';
+import { useAlwaysOpenModal } from '@/core/modal/use-always-open-modal';
 import { EmptyList, FocusAwareStatusBar, Image, Text } from '@/ui';
-import { AlwaysOpenModal, useAlwaysOpenModal } from '@/ui/always-open-modal';
+import { AlwaysOpenModal } from '@/ui/always-open-modal';
 import images from '@/ui/images/images';
 
 const { width } = Dimensions.get('window');
 
 export default function Home() {
   const { ref, present } = useAlwaysOpenModal();
+  const showModal = useModalStore((state) => state.showModal);
+
   const router = useRouter();
 
   const renderItem = React.useCallback(({ item }: { item: Product }) => {
@@ -31,9 +36,17 @@ export default function Home() {
     );
   }, []);
 
-  React.useEffect(() => {
-    present();
-  }, [present, ref]);
+  // React.useEffect(() => {
+  //   present();
+  //   showModal();
+  // }, [present, showModal]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      present();
+      showModal();
+    }, [present, showModal])
+  );
 
   return (
     <View className="flex-1">

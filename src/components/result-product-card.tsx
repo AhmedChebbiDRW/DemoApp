@@ -30,14 +30,14 @@ const ResultProductCard: React.FC<ResultProductProps> = ({
             <Favorite
               color="black"
               fill="rgba(100, 100, 100, 0.7)"
-              width={40}
-              height={40}
+              width={35}
+              height={35}
             />
           </View>
           <View className={`mt-20 p-6`}>
             <Text className={`font-nhdmedium text-2xl text-white`}>{name}</Text>
             <Text className={`font-pmedium text-lg text-white`}>{brand}</Text>
-            <View className="flex flex-row space-x-2">
+            <View className="flex flex-row">
               <Info />
               <Text className={`font-pmedium text-lg text-white`}>
                 {total} skaners 🔥

@@ -1,11 +1,9 @@
-/* eslint-disable max-lines-per-function */
 import { FontAwesome6 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FlatList } from 'react-native';
 
 import { Button, EmptyList, Select, Text, View } from '@/ui';
-import { useAlwaysOpenModal } from '@/ui/always-open-modal';
 
 import { tailles } from './sign-up-form';
 
@@ -18,7 +16,6 @@ export interface ResultProductProps {
 
 const ResultProductLinks: React.FC<ResultProductProps> = ({ results }) => {
   const [value, setValue] = React.useState<string | number | undefined>();
-  const { ref } = useAlwaysOpenModal();
 
   const renderItem = React.useCallback(
     ({ item }: { item: { href: string; price: number } }) => {
@@ -62,12 +59,6 @@ const ResultProductLinks: React.FC<ResultProductProps> = ({ results }) => {
     },
     []
   );
-
-  useEffect(() => {
-    if (ref?.current) {
-      ref.current.dismiss();
-    }
-  }, [ref]);
 
   return (
     <View className="flex-1">
