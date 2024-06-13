@@ -17,9 +17,9 @@ const images = [
   'https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?auto=format&fit=crop&w=800&q=80',
 ];
 
-export const Card = ({ title, body, id }: Props) => {
+export const Card = ({ title, body }: Props) => {
   return (
-    <Link href={`/feed/${id}`} asChild>
+    <Link href={`/`} asChild>
       <Pressable>
         <View className="m-2 overflow-hidden rounded-xl  border border-neutral-300 bg-white  dark:bg-neutral-900">
           <Image
