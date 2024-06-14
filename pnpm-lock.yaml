@@ -69,8 +69,8 @@ dependencies:
     specifier: ~14.8.4
     version: 14.8.4(expo@50.0.17)
   expo-media-library:
-    specifier: ^16.0.3
-    version: 16.0.3(expo@50.0.17)
+    specifier: ^15.9.1
+    version: 15.9.1(expo@50.0.17)
   expo-router:
     specifier: ~3.4.10
     version: 3.4.10(expo-constants@15.4.6)(expo-linking@6.2.2)(expo-modules-autolinking@1.10.3)(expo-status-bar@1.11.1)(expo@50.0.17)(react-native-reanimated@3.6.2)(react-native-safe-area-context@4.8.2)(react-native-screens@3.29.0)(react-native@0.73.6)(react@18.2.0)
@@ -6858,8 +6858,8 @@ packages:
       - supports-color
     dev: false
 
-  /expo-media-library@16.0.3(expo@50.0.17):
-    resolution: {integrity: sha512-E++h+ZyVOXhGOKddeg/wjoEFH+JAGazcAsMpjAOT+/F69nrIEl27Fymi9XVAzooazp38dKrDBNeOJuWoXUdUAw==}
+  /expo-media-library@15.9.1(expo@50.0.17):
+    resolution: {integrity: sha512-Y29uKFJ3qWwNejIrjoCppXp3OgIFs/RYHWXkF9xey6evpNrUlHoP1WHG2jYAMSrss6aIRVt3tO7EtYUCZxz50Q==}
     peerDependencies:
       expo: '*'
     dependencies:

@@ -57,7 +57,7 @@ const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
-    router.push<any>({
+    router.push({
       pathname: '/search',
       params: {
         title: 'YEEZY BOOST 350 V2',
