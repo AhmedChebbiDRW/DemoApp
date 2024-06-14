@@ -1,54 +1,54 @@
-# Ignore node_modules except for the essential packages
-node_modules/
-!node_modules/@react-native/
-!node_modules/react-native/
-!node_modules/expo/
-!node_modules/@expo/
+# # Ignore node_modules except for the essential packages
+# node_modules/
+# !node_modules/@react-native/
+# !node_modules/react-native/
+# !node_modules/expo/
+# !node_modules/@expo/
 
-# Ignore build outputs
-android/app/build/
-ios/Pods/
-ios/build/
+# # Ignore build outputs
+# android/app/build/
+# ios/Pods/
+# ios/build/
 
-# Ignore logs
-*.log
+# # Ignore logs
+# *.log
 
-# Ignore OS-generated files
-.DS_Store
-Thumbs.db
+# # Ignore OS-generated files
+# .DS_Store
+# Thumbs.db
 
-# Ignore specific directories
-__tests__/
-coverage/
-e2e/
-screenshots/
+# # Ignore specific directories
+# __tests__/
+# coverage/
+# e2e/
+# screenshots/
 
-# Ignore configuration files not needed for the build
-.babelrc
-.eslintignore
-.eslintrc.js
-.prettierrc
-.editorconfig
-.vscode/
-.idea/
+# # Ignore configuration files not needed for the build
+# .babelrc
+# .eslintignore
+# .eslintrc.js
+# .prettierrc
+# .editorconfig
+# .vscode/
+# .idea/
 
-# Ignore other development files
-*.sh
-*.md
+# # Ignore other development files
+# *.sh
+# *.md
 
-# Include JSON files in src/translations
-!src/translations/**/*.json
+# # Include JSON files in src/translations
+# !src/translations/**/*.json
 
-# Ignore cache directories
-.cache/
-.expo/
-.expo-shared/
+# # Ignore cache directories
+# .cache/
+# .expo/
+# .expo-shared/
 
-# Ignore environment files
-.env
-.env.local
-.env.*.local
+# # Ignore environment files
+# .env
+# .env.local
+# .env.*.local
 
-# Ignore image and asset source files if not needed
-assets/raw/
-assets/source/
+# # Ignore image and asset source files if not needed
+# assets/raw/
+# assets/source/
