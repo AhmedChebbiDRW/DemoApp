@@ -35,8 +35,9 @@ screenshots/
 # Ignore other development files
 *.sh
 *.md
-*.json
-!package.json
+
+# Include JSON files in src/translations
+!src/translations/**/*.json
 
 # Ignore cache directories
 .cache/
