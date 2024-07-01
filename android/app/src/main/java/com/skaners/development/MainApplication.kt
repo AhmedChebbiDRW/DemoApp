@@ -1,4 +1,4 @@
-package com.skaners.staging
+package com.skaners.development
 
 import android.app.Application
 import android.content.res.Configuration
