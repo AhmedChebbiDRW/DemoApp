@@ -87,7 +87,7 @@ export const SignUpForm = ({ onSubmit = () => {} }: SignUpFormProps) => {
 
   return (
     <ScrollView>
-      <View className="mt-20 h-full flex-1 justify-start gap-1 p-4">
+      <View className="my-20 h-full flex-1 justify-start gap-1 p-4">
         <Text
           testID="form-title"
           className="pb-6 text-center font-nblack text-2xl uppercase"

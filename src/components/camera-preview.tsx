@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'blue',
     width: '100%',
     marginTop: 15,
-    marginBottom: 20,
+    marginBottom: '20%',
     justifyContent: 'space-around',
   },
   photoOption: {

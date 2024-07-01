@@ -19,8 +19,8 @@ const ResultProductCard: React.FC<ResultProductProps> = ({
   total,
 }) => {
   return (
-    <View className="text-surface shadow-secondary-1 dark:bg-surface-dark rounded-lg bg-white py-4 dark:text-white">
-      <View className="relative h-full w-full overflow-hidden bg-cover bg-no-repeat">
+    <View className="text-surface shadow-secondary-1 dark:bg-surface-dark h-full w-full rounded-lg bg-white py-4 dark:bg-gray-900 dark:text-white">
+      <View className="relative h-full w-full overflow-hidden bg-contain bg-no-repeat">
         <ImageBackground
           source={{ uri: image }}
           resizeMode="cover"
@@ -34,7 +34,7 @@ const ResultProductCard: React.FC<ResultProductProps> = ({
               height={35}
             />
           </View>
-          <View className={`mt-20 p-6`}>
+          <View className={`mt-20 p-4`}>
             <Text className={`font-nhdmedium text-2xl text-white`}>{name}</Text>
             <Text className={`font-pmedium text-lg text-white`}>{brand}</Text>
             <View className="flex flex-row">
@@ -44,8 +44,8 @@ const ResultProductCard: React.FC<ResultProductProps> = ({
               </Text>
             </View>
           </View>
-          <View className={`px-6 py-4`}>
-            <Text className={`font-plight text-sm text-white`}>
+          <View className={`h-full w-full p-4`}>
+            <Text className={`truncate font-plight text-sm text-white`}>
               La YEEZY BOOST 350 V2 est une sneaker embl&eacute;matique qui
               repr&eacute;sente une collaboration entre le c&eacute;l&egrave;bre
               rappeur et designer Kanye West et la marque de sport Adidas. Cette

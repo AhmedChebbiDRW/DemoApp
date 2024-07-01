@@ -10,6 +10,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import { products } from '@/api/products';
 import type { Product } from '@/components/product-card';
@@ -35,11 +36,6 @@ export default function Home() {
       </View>
     );
   }, []);
-
-  // React.useEffect(() => {
-  //   present();
-  //   showModal();
-  // }, [present, showModal]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -93,15 +89,18 @@ export default function Home() {
             ref={ref}
             enablePanDownToClose={false}
           >
-            <FlatList
-              data={products}
-              renderItem={renderItem}
-              keyExtractor={(_, index) => `item-${index}`}
-              ListEmptyComponent={<EmptyList isLoading={false} />}
-              numColumns={2}
-              columnWrapperStyle={styles.row}
-              className="dark:bg-gray-900"
-            />
+            <ScrollView className="h-full w-full dark:bg-gray-900">
+              <FlatList
+                data={products}
+                renderItem={renderItem}
+                keyExtractor={(_, index) => `item-${index}`}
+                ListEmptyComponent={<EmptyList isLoading={false} />}
+                numColumns={2}
+                columnWrapperStyle={styles.row}
+                className="dark:bg-gray-900"
+                scrollEnabled={false}
+              />
+            </ScrollView>
           </AlwaysOpenModal>
         </View>
       </LinearGradient>

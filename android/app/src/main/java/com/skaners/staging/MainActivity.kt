@@ -1,4 +1,4 @@
-package com.skaners.development
+package com.skaners.staging
 
 import android.os.Build
 import android.os.Bundle
