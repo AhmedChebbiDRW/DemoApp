@@ -46,7 +46,7 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
         label="Continuer"
         onPress={handleSubmit(onSubmit)}
         textClassName={`${errors.email ? 'text-[#E79F80]' : ''}`}
-        className={`${errors.email ? 'bg-[#FFD3C5]' : ''}`}
+        className={`${errors.email ? 'bg-[#FFD3C5] dark:bg-[#FFD3C5]' : ''}`}
       />
     </View>
   );

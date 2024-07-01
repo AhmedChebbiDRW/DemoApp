@@ -50,7 +50,7 @@ function Providers({ children }: { children: React.ReactNode }) {
   return (
     <GestureHandlerRootView
       style={styles.container}
-      className={theme.dark ? `light` : undefined}
+      className={theme.dark ? `dark` : undefined}
     >
       <ThemeProvider value={theme}>
         <APIProvider>

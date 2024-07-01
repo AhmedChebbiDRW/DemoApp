@@ -85,7 +85,7 @@ export default function Home() {
             />
           </Pressable>
         </View>
-        <View className="w-full flex-1">
+        <View className="w-full flex-1 dark:bg-gray-900">
           <AlwaysOpenModal
             snapPoints={['3%', '95%']} // optional
             title="Mes scans"
@@ -100,6 +100,7 @@ export default function Home() {
               ListEmptyComponent={<EmptyList isLoading={false} />}
               numColumns={2}
               columnWrapperStyle={styles.row}
+              className="dark:bg-gray-900"
             />
           </AlwaysOpenModal>
         </View>

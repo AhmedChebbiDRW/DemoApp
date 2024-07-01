@@ -12,7 +12,7 @@ export const List = NFlashList;
 
 export const EmptyList = React.memo(({ isLoading }: Props) => {
   return (
-    <View className="min-h-[400px] flex-1 items-center justify-center">
+    <View className="min-h-[400px] flex-1 items-center justify-center dark:bg-gray-500">
       {!isLoading ? (
         <View>
           <NoData />

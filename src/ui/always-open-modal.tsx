@@ -41,10 +41,10 @@ export const AlwaysOpenModal = React.forwardRef(
 
     const renderHandleComponent = React.useCallback(
       () => (
-        <>
-          <View className="mb-8 mt-2 h-1 w-12 self-center rounded-lg bg-gray-400 dark:bg-gray-700" />
+        <View className="rounded-2xl dark:bg-gray-900">
+          <View className="mb-8 mt-2 h-1 w-12 self-center rounded-lg bg-gray-900 dark:bg-gray-300" />
           <ModalHeader title={title} skaners={skaners} />
-        </>
+        </View>
       ),
       [title, skaners]
     );
@@ -86,7 +86,7 @@ const ModalHeader = React.memo(
     return (
       <>
         {title && (
-          <View className="flex-row px-2 py-4">
+          <View className="flex-row px-2 py-4 dark:bg-gray-900">
             <View className="flex-1 flex-row items-center justify-between">
               <Text className="text-center font-nhdmedium text-[20px] text-[#26313D] dark:text-white">
                 {title}

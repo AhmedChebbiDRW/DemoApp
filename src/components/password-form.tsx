@@ -1,11 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useColorScheme } from 'nativewind';
 import React, { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { Button, ControlledInput, Text, View } from '@/ui';
+import { Button, colors, ControlledInput, Text, View } from '@/ui';
 
 const schema = z.object({
   password: z
@@ -34,6 +35,10 @@ export const PasswordForm = ({
   } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
+
+  const { colorScheme } = useColorScheme();
+  const color = colorScheme === 'dark' ? colors.white : colors.neutral[900];
+
   return (
     <View className="mt-20 flex-1 justify-start  p-4">
       <Text
@@ -57,9 +62,9 @@ export const PasswordForm = ({
           onPress={() => setShowPassword(!showPassword)}
         >
           {showPassword ? (
-            <Ionicons name="eye-outline" size={24} color="black" />
+            <Ionicons name="eye-outline" size={24} color={color} />
           ) : (
-            <Ionicons name="eye-off-outline" size={24} color="black" />
+            <Ionicons name="eye-off-outline" size={24} color={color} />
           )}
         </Button>
       </View>
@@ -68,7 +73,7 @@ export const PasswordForm = ({
         label="Login"
         onPress={handleSubmit(onSubmit)}
         textClassName={`${errors.password ? 'text-[#E79F80]' : ''}`}
-        className={`${errors.password ? 'bg-[#FFD3C5]' : ''}`}
+        className={`${errors.password ? 'bg-[#FFD3C5] dark:bg-[#FFD3C5]' : ''}`}
       />
     </View>
   );
