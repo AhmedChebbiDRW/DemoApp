@@ -23,16 +23,21 @@ const schema = z.object({
   age: z.preprocess(
     (val) => Number(val),
     z
-      .number({ required_error: 'Age is required' })
-      .nonnegative({ message: 'Age must be a number' })
+      .number({
+        required_error: "L'âge est requis",
+        invalid_type_error: 'Doit être un nombre',
+      })
+      .nonnegative({ message: 'Doit être un nombre positif' })
       .min(1)
   ),
   // radio: z.boolean(),
   mode: z
-    .string({ required_error: 'Please select an option' })
-    .min(1, 'Please select an option'),
-  marques: z.array(z.string({ required_error: 'Please select an option' })),
-  select: z.number({ required_error: 'Must select a choice' }),
+    .string({ required_error: 'veuillez sélectionner une option' })
+    .min(1, 'veuillez sélectionner une option'),
+  marques: z.array(
+    z.string({ required_error: 'veuillez sélectionner une option' })
+  ),
+  select: z.number({ required_error: 'vous devez sélectionner un choix' }),
 });
 
 export const tailles: Option[] = [

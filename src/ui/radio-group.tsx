@@ -132,12 +132,12 @@ const RadioGroup = <T extends FieldValues>({
             </View>
           </Pressable>
         ))}
-        {error && (
-          <Text className="text-sm text-danger-300 dark:text-danger-600">
-            {error}
-          </Text>
-        )}
       </View>
+      {error && (
+        <Text className="text-sm text-danger-300 dark:text-danger-600">
+          {error}
+        </Text>
+      )}
     </View>
   );
 };
