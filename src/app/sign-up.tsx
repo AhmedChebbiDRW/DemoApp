@@ -15,7 +15,7 @@ export default function SignUp() {
 
   const onSubmit: SignUpFormProps['onSubmit'] = (data) => {
     console.log('SignUp Screen', data);
-    signIn({ access: 'access-token', refresh: 'refresh-token' });
+    signIn({ accessToken: 'access-token', refreshToken: 'refresh-token' });
     router.push('/');
   };
   return (
