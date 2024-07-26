@@ -7,9 +7,9 @@ import type { User } from './types';
 type Variables = { id: string };
 type Response = User;
 
-export const usePost = createQuery<Response, Variables, AxiosError>({
+export const useUser = createQuery<Response, Variables, AxiosError>({
   queryKey: ['users'],
-  fetcher: (variables) => {
+  fetcher: async (variables) => {
     return client
       .get(`users/${variables.id}`)
       .then((response) => response.data);

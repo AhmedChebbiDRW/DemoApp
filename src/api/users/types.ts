@@ -9,4 +9,5 @@ export type User = {
   mode?: string | null;
   size?: number | null;
   marques?: string[] | null;
+  otp?: number | null;
 };

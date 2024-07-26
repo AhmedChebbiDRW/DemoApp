@@ -1,3 +1,4 @@
+import type { User } from '@/api/users';
 import { getItem, removeItem, setItem } from '@/core/storage';
 
 const TOKEN = 'token';
@@ -6,6 +7,7 @@ const EMAIL = 'email';
 export type TokenType = {
   accessToken: string;
   refreshToken: string;
+  user: User;
 };
 
 export type EmailType = {

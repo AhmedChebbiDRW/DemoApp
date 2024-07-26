@@ -21,11 +21,13 @@ export type FormType = z.infer<typeof schema>;
 export type PasswordFormProps = {
   onSubmit?: SubmitHandler<FormType>;
   isNewUser: boolean;
+  isPending: boolean;
 };
 
 export const PasswordForm = ({
   onSubmit = () => {},
   isNewUser,
+  isPending,
 }: PasswordFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const {
@@ -71,6 +73,7 @@ export const PasswordForm = ({
       <Button
         testID="login-button"
         label="Login"
+        loading={isPending}
         onPress={handleSubmit(onSubmit)}
         textClassName={`${errors.password ? 'text-[#E79F80]' : ''}`}
         className={`${errors.password ? 'bg-[#FFD3C5] dark:bg-[#FFD3C5]' : ''}`}
