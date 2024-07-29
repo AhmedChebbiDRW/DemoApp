@@ -1,4 +1,5 @@
 /* eslint-disable max-lines-per-function */
+import { router } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React, { useState } from 'react';
 import type { TextStyle, ViewStyle } from 'react-native';
@@ -74,6 +75,12 @@ export const OtpInputCustom = ({
     }
   };
 
+  const handleEmailOtpVerified = () => {
+    // If OTP is verified, navigate to the next screen
+    setModalVisible(false);
+    router.push('/sign-up');
+  };
+
   const styles = StyleSheet.create({
     container: {
       flexDirection: 'row',
@@ -138,9 +145,7 @@ export const OtpInputCustom = ({
               <Button
                 testID="verified-otp-button"
                 label="OK"
-                onPress={() => {
-                  setModalVisible(false);
-                }}
+                onPress={handleEmailOtpVerified}
                 textClassName="text-xl"
                 className=""
               />
