@@ -9,7 +9,7 @@ import type { OtpInputRef } from 'react-native-otp-entry';
 import { OtpInput } from 'react-native-otp-entry';
 
 import { useEmailOtpConfirm } from '@/api/auth';
-import { Button, colors, Text, View } from '@/ui';
+import { Button, colors, showErrorMessage, Text, View } from '@/ui';
 
 interface OtpInputCustomProps {
   numberOfDigits: number;
@@ -52,23 +52,14 @@ export const OtpInputCustom = ({
         { email: userEmail, otp },
         {
           onSuccess: (response) => {
-            console.log(
-              "🚀 ~ constonSubmit:PasswordFormProps['onSubmit']= ~ data:",
-              response
-            );
             setSuccess(response.status);
-            // here you can navigate to the post list and refresh the list data
-            //queryClient.invalidateQueries(usePosts.getKey());
           },
-          onError: (error) => {
-            console.log('🚀 ~ handleEmailOtpConfirm ~ error:', error);
+          onError: () => {
+            // TODO: Handle error
+            showErrorMessage('Failed to confirm email');
           },
         }
       );
-      // await new Promise((resolve) => setTimeout(resolve, 1000));
-      // signIn({});
-
-      // setModalVisible(true);
     } catch (error: any) {
       ToastAndroid.show('Something went wrong!', ToastAndroid.SHORT);
       setModalVisible(false);

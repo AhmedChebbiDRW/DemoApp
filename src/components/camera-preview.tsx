@@ -1,5 +1,7 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable react-native/no-inline-styles */
 import { Ionicons } from '@expo/vector-icons';
+import type { CameraCapturedPicture } from 'expo-camera';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
@@ -9,12 +11,17 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  ToastAndroid,
   useWindowDimensions,
   View,
 } from 'react-native';
 
+import { useSearchPhoto } from '@/api/upload';
+import AWSHelper from '@/core/aws-helper/aws-helper';
+import { showErrorMessage } from '@/ui';
+
 interface CameraPreviewProps {
-  photo: any;
+  photo: CameraCapturedPicture | null;
   retakePicture: () => void;
   savePhoto?: () => void;
 }
@@ -49,28 +56,60 @@ const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
 
   const router = useRouter();
 
-  const sendImage = () => {
-    /*
-     * SEND IMAGE TO SERVER
-     */
-    setIsLoading(true);
-    setTimeout(() => {
+  const { uploadS3File } = AWSHelper();
+  const { mutate: searchPhoto } = useSearchPhoto();
+
+  const sendImage = async () => {
+    if (!photo) return;
+
+    try {
+      setIsLoading(true);
+      const localPhoto = await fetch(photo.uri);
+      const blob = await localPhoto.blob();
+
+      const fileName = 'photo'; // You can generate a unique name if needed
+      const result = await uploadS3File(blob, fileName);
+      if (result) {
+        try {
+          // API request for Login
+          searchPhoto(
+            { imageUrl: result },
+            {
+              onSuccess: (response) => {
+                setIsLoading(false);
+                //TODO: Handle Uknown results
+                router.push<any>({
+                  pathname: '/search',
+                  params: {
+                    title: response?.result?.model ?? '',
+                    brand: response?.result?.brand ?? '',
+                    color: response?.result?.color ?? '',
+                    referenceNumber: response?.result?.referenceNumber ?? '',
+                    photo: photo && photo.uri,
+                    total: 1256,
+                    results: JSON.stringify(results),
+                  },
+                });
+              },
+              onError: () => {
+                setIsLoading(false);
+                showErrorMessage('Error handling search image');
+              },
+            }
+          );
+        } catch (error: any) {
+          ToastAndroid.show('Something went wrong!', ToastAndroid.SHORT);
+        }
+      } else {
+        setIsLoading(false);
+        showErrorMessage('File upload failed');
+      }
+    } catch (error) {
       setIsLoading(false);
-    }, 3000);
-    router.push<any>({
-      pathname: '/search',
-      params: {
-        title: 'YEEZY BOOST 350 V2',
-        brand: 'ADIDAS',
-        photo: photo && photo.uri,
-        total: 1256,
-        results: JSON.stringify(results),
-      },
-    });
-    /*
-     * SEND IMAGE TO SERVER
-     */
+      showErrorMessage('Error uploading image:');
+    }
   };
+
   return (
     <View style={styles.container}>
       <StatusBar
@@ -79,7 +118,7 @@ const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
         barStyle={'light-content'}
       />
       <ImageBackground
-        source={{ uri: photo && photo.uri }}
+        source={{ uri: photo?.uri }}
         style={{
           height: height,
           width: '100%',
@@ -89,7 +128,7 @@ const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
           <View className="flex-1 items-center justify-center">
             <ActivityIndicator size="large" color="#FC3F04" />
             <Text className="text-base font-semibold text-white ">
-              Recherche en cours...
+              Uploading...
             </Text>
           </View>
         )}
@@ -98,9 +137,6 @@ const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
         <Pressable style={styles.photoOption} onPress={retakePicture}>
           <Text style={styles.photoOptionText}>Re-Take</Text>
         </Pressable>
-        {/* <Pressable style={styles.photoOption} onPress={savePhoto}>
-          <Text style={styles.photoOptionText}>Save</Text>
-        </Pressable> */}
         <Pressable style={styles.sendButton} onPress={sendImage}>
           <Text style={styles.sendText}>Send</Text>
           <Ionicons name="send-outline" size={20} color="#fff" />
@@ -118,7 +154,6 @@ const styles = StyleSheet.create({
   },
   photoOptions: {
     flexDirection: 'row',
-    // backgroundColor: 'blue',
     width: '100%',
     marginTop: 15,
     marginBottom: '20%',
@@ -131,7 +166,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   photoOptionText: {
-    // color: '#fff',
     fontSize: 17,
   },
   sendButton: {
@@ -147,7 +181,7 @@ const styles = StyleSheet.create({
   sendText: {
     color: '#fff',
     fontSize: 17,
-    fontWeight: '400', // Changed from 400 to "400"
+    fontWeight: '400',
     marginRight: 10,
   },
 });

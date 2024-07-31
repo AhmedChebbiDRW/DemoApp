@@ -12,6 +12,7 @@ export default function SignUp() {
   useSoftKeyboardEffect();
 
   const onSubmit: SignUpFormProps['onSubmit'] = (data) => {
+    //TODO: handle TES KIFFS
     console.log('SignUp Screen TES KIFFS', data);
     router.push('/');
   };

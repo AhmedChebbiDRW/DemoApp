@@ -6,6 +6,7 @@ import { useLogin } from '@/api/auth/use-login';
 import { OtpInputCustom } from '@/components/otp-input-custom';
 import type { PasswordFormProps } from '@/components/password-form';
 import { PasswordForm } from '@/components/password-form';
+import { signIn } from '@/core';
 import { getEmail } from '@/core/auth/utils';
 import { useSoftKeyboardEffect } from '@/core/keyboard';
 import { FocusAwareStatusBar, showErrorMessage } from '@/ui';
@@ -15,8 +16,6 @@ export default function Login() {
   const router = useRouter();
   const userEmail = getEmail();
   const { mutate: login, isPending } = useLogin();
-  // const signIn = useAuth.use.signIn();
-  // console.log('🚀 ~ Login ~ userEmail:', userEmail);
 
   useSoftKeyboardEffect();
 
@@ -27,16 +26,13 @@ export default function Login() {
         { email: userEmail.email, password: data.password },
         {
           onSuccess: (response) => {
-            console.log(
-              "🚀 ~ constonSubmit:PasswordFormProps['onSubmit']= ~ data:",
-              response?.result?.user && response.result.user.isNewUser
-            );
             // Save user locally
-            // signIn({
-            //   accessToken: response.token,
-            //   refreshToken: response.refreshToken,
-            //   user: response.user,
-            // });
+            signIn({
+              accessToken: response?.result?.token,
+              refreshToken: response?.result?.refreshToken,
+              user: response?.result?.user,
+            });
+
             //TODO: check if is new user redirect to 'sign-up' else redirect to '/'
             if (response?.result?.user && response.result.user.isNewUser) {
               router.push('/sign-up');
@@ -45,7 +41,10 @@ export default function Login() {
             }
           },
           onError: (error) => {
-            if (error?.response?.status === 401) {
+            if (
+              error?.response?.status === 401 ||
+              error?.response?.status === 403
+            ) {
               setModalVisible(true);
             } else {
               showErrorMessage('Error handling login');

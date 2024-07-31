@@ -1,4 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
+
 import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider } from '@react-navigation/native';

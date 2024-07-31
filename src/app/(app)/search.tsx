@@ -10,11 +10,11 @@ export default function Search() {
   const searchParams = useLocalSearchParams();
   const { dismiss, ref } = useAlwaysOpenModal();
 
-  const { title, brand, photo, total, results } = searchParams;
+  const { title, brand, color, referenceNumber, photo, total, results } =
+    searchParams;
   const r = JSON.parse(results as string);
 
   React.useEffect(() => {
-    console.log('🚀 ~ Search ~ ref:', ref);
     dismiss();
   }, [dismiss, ref]);
 
@@ -26,6 +26,8 @@ export default function Search() {
           brand={brand as string}
           name={title as string}
           total={total as string}
+          color={color as string}
+          referenceNumber={referenceNumber as string}
         />
       </View>
       <View className="flex-1 p-4">

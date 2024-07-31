@@ -10,6 +10,8 @@ export interface ResultProductProps {
   brand: string;
   name: string;
   total: string;
+  color: string;
+  referenceNumber: string;
 }
 
 const ResultProductCard: React.FC<ResultProductProps> = ({
@@ -17,6 +19,8 @@ const ResultProductCard: React.FC<ResultProductProps> = ({
   brand,
   name,
   total,
+  color,
+  referenceNumber,
 }) => {
   return (
     <View className="text-surface shadow-secondary-1 dark:bg-surface-dark h-full w-full rounded-lg bg-white py-4 dark:bg-gray-900 dark:text-white">
@@ -37,6 +41,10 @@ const ResultProductCard: React.FC<ResultProductProps> = ({
           <View className={`mt-20 p-4`}>
             <Text className={`font-nhdmedium text-2xl text-white`}>{name}</Text>
             <Text className={`font-pmedium text-lg text-white`}>{brand}</Text>
+            <Text className={`font-pmedium text-lg text-white`}>{color}</Text>
+            <Text className={`font-pmedium text-lg text-white`}>
+              {referenceNumber}
+            </Text>
             <View className="flex flex-row">
               <Info />
               <Text className={`font-pmedium text-lg text-white`}>
