@@ -7,5 +7,6 @@ export type SearchPhotoResponse = {
     model: string | null;
     color: string | null;
     referenceNumber: string | null;
+    description: string | null;
   };
 };

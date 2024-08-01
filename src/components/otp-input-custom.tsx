@@ -47,7 +47,7 @@ export const OtpInputCustom = ({
 
   const handleEmailOtpConfirm = async () => {
     try {
-      // Simulate API request
+      // Confirm email with OTP
       emailOtpConfirm(
         { email: userEmail, otp },
         {
@@ -55,7 +55,7 @@ export const OtpInputCustom = ({
             setSuccess(response.status);
           },
           onError: () => {
-            // TODO: Handle error
+            // Handle error
             showErrorMessage('Failed to confirm email');
           },
         }

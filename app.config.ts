@@ -119,6 +119,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         recordAudioAndroid: true,
       },
     ],
+    [
+      '@react-native-google-signin/google-signin',
+      {
+        iosUrlScheme:
+          'com.googleusercontent.apps.818234329199-7s9vau6nf2lhhf669ub40cs4npcfh1vb',
+      },
+    ],
   ],
   extra: {
     ...ClientEnv,

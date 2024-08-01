@@ -5,8 +5,9 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { Alert, ImageBackground } from 'react-native';
 
+import { GoogleSignInButton } from '@/components/google-signin-button';
 import { useIsFirstTime } from '@/core';
-import { Button, FocusAwareStatusBar, Image, Text, View } from '@/ui';
+import { Button, FocusAwareStatusBar, Text, View } from '@/ui';
 import images from '@/ui/images/images';
 export default function Onboarding() {
   const [_, setIsFirstTime] = useIsFirstTime();
@@ -26,34 +27,7 @@ export default function Onboarding() {
         </View>
         <View className="relative w-full items-center justify-end gap-2 rounded-full p-4">
           <View className="flex-row items-center justify-center gap-4 ">
-            <Button
-              onPress={() =>
-                Alert.alert(
-                  'Alert title',
-                  'Here’s some alert text. It can span multiple lines if needed!',
-                  [
-                    {
-                      text: 'Action',
-                      onPress: () => console.log('Action 1 Pressed'),
-                      style: 'cancel',
-                    },
-                    {
-                      text: 'Action',
-                      onPress: () => console.log('Action 2 Pressed'),
-                      style: 'cancel',
-                    },
-                  ],
-                  { cancelable: true }
-                )
-              }
-              className="h-11 w-14 items-center justify-center rounded-full bg-white"
-            >
-              <Image
-                source={images.googleIcon}
-                contentFit="contain"
-                className="h-6 w-6"
-              />
-            </Button>
+            <GoogleSignInButton />
             <Button
               onPress={() =>
                 Alert.alert(

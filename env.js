@@ -85,6 +85,9 @@ const client = z.object({
   SECRET_ACCESS_KEY: z.string().min(1),
   AWS_S3_REGION: z.string().min(1),
   AWS_DEFAULT_S3_BUCKET: z.string().min(1),
+  GOOGLE_ANDROID_CLIENT_ID: z.string().min(1),
+  GOOGLE_IOS_CLIENT_ID: z.string().min(1),
+  GOOGLE_WEB_CLIENT_ID: z.string().min(1),
 });
 
 const buildTime = z.object({
@@ -96,6 +99,9 @@ const buildTime = z.object({
   SECRET_ACCESS_KEY: z.string().min(1),
   AWS_S3_REGION: z.string().min(1),
   AWS_DEFAULT_S3_BUCKET: z.string().min(1),
+  GOOGLE_ANDROID_CLIENT_ID: z.string().min(1),
+  GOOGLE_IOS_CLIENT_ID: z.string().min(1),
+  GOOGLE_WEB_CLIENT_ID: z.string().min(1),
 });
 
 /**
@@ -117,6 +123,9 @@ const _clientEnv = {
   SECRET_ACCESS_KEY: process.env.SECRET_ACCESS_KEY,
   AWS_S3_REGION: process.env.AWS_S3_REGION,
   AWS_DEFAULT_S3_BUCKET: process.env.AWS_DEFAULT_S3_BUCKET,
+  GOOGLE_ANDROID_CLIENT_ID: process.env.GOOGLE_ANDROID_CLIENT_ID,
+  GOOGLE_IOS_CLIENT_ID: process.env.GOOGLE_IOS_CLIENT_ID,
+  GOOGLE_WEB_CLIENT_ID: process.env.GOOGLE_WEB_CLIENT_ID,
 };
 
 /**
@@ -131,6 +140,9 @@ const _buildTimeEnv = {
   SECRET_ACCESS_KEY: process.env.SECRET_ACCESS_KEY,
   AWS_S3_REGION: process.env.AWS_S3_REGION,
   AWS_DEFAULT_S3_BUCKET: process.env.AWS_DEFAULT_S3_BUCKET,
+  GOOGLE_ANDROID_CLIENT_ID: process.env.GOOGLE_ANDROID_CLIENT_ID,
+  GOOGLE_IOS_CLIENT_ID: process.env.GOOGLE_IOS_CLIENT_ID,
+  GOOGLE_WEB_CLIENT_ID: process.env.GOOGLE_WEB_CLIENT_ID,
 };
 
 /**

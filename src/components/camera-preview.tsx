@@ -3,7 +3,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import type { CameraCapturedPicture } from 'expo-camera';
 import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   ActivityIndicator,
   ImageBackground,
@@ -52,18 +52,16 @@ const results = [
 const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
   const { width } = useWindowDimensions();
   const height = Math.round((width * 16) / 9);
-  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
-  const { uploadS3File } = AWSHelper();
-  const { mutate: searchPhoto } = useSearchPhoto();
+  const { uploadS3File, isPending: isLoading } = AWSHelper();
+  const { mutate: searchPhoto, isPending } = useSearchPhoto();
 
   const sendImage = async () => {
     if (!photo) return;
 
     try {
-      setIsLoading(true);
       const localPhoto = await fetch(photo.uri);
       const blob = await localPhoto.blob();
 
@@ -76,8 +74,7 @@ const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
             { imageUrl: result },
             {
               onSuccess: (response) => {
-                setIsLoading(false);
-                //TODO: Handle Uknown results
+                // Redirect to search screen with search results
                 router.push<any>({
                   pathname: '/search',
                   params: {
@@ -85,6 +82,7 @@ const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
                     brand: response?.result?.brand ?? '',
                     color: response?.result?.color ?? '',
                     referenceNumber: response?.result?.referenceNumber ?? '',
+                    description: response?.result?.description ?? '',
                     photo: photo && photo.uri,
                     total: 1256,
                     results: JSON.stringify(results),
@@ -92,7 +90,6 @@ const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
                 });
               },
               onError: () => {
-                setIsLoading(false);
                 showErrorMessage('Error handling search image');
               },
             }
@@ -101,11 +98,9 @@ const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
           ToastAndroid.show('Something went wrong!', ToastAndroid.SHORT);
         }
       } else {
-        setIsLoading(false);
         showErrorMessage('File upload failed');
       }
     } catch (error) {
-      setIsLoading(false);
       showErrorMessage('Error uploading image:');
     }
   };
@@ -129,6 +124,14 @@ const CameraPreview = ({ photo, retakePicture }: CameraPreviewProps) => {
             <ActivityIndicator size="large" color="#FC3F04" />
             <Text className="text-base font-semibold text-white ">
               Uploading...
+            </Text>
+          </View>
+        )}
+        {isPending && (
+          <View className="flex-1 items-center justify-center">
+            <ActivityIndicator size="large" color="#FC3F04" />
+            <Text className="text-base font-semibold text-white ">
+              Searching for results...
             </Text>
           </View>
         )}

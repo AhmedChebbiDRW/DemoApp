@@ -6,13 +6,14 @@ import { useLogin } from '@/api/auth/use-login';
 import { OtpInputCustom } from '@/components/otp-input-custom';
 import type { PasswordFormProps } from '@/components/password-form';
 import { PasswordForm } from '@/components/password-form';
-import { signIn } from '@/core';
+import { signIn, useIsFirstTime } from '@/core';
 import { getEmail } from '@/core/auth/utils';
 import { useSoftKeyboardEffect } from '@/core/keyboard';
 import { FocusAwareStatusBar, showErrorMessage } from '@/ui';
 export default function Login() {
   const [isModalVisible, setModalVisible] = useState(false);
-  // const [isNewUser, setIsNewUser] = useState(true);
+  const [_, setIsFirstTime] = useIsFirstTime();
+
   const router = useRouter();
   const userEmail = getEmail();
   const { mutate: login, isPending } = useLogin();
@@ -33,8 +34,9 @@ export default function Login() {
               user: response?.result?.user,
             });
 
-            //TODO: check if is new user redirect to 'sign-up' else redirect to '/'
+            //Check if is new user redirect to 'sign-up' else redirect to '/'
             if (response?.result?.user && response.result.user.isNewUser) {
+              setIsFirstTime(false);
               router.push('/sign-up');
             } else {
               router.push('/');
